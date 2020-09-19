@@ -14,7 +14,7 @@ const render = require("./lib/htmlRenderer");
 async function TeamBuilder(){
     let teamHTML = "";
     let teamSize;
-    // let teamMember = [];
+    let teamMember = [];
 
     await inquirer.prompt(
       {
@@ -83,20 +83,15 @@ async function TeamBuilder(){
                 ])
                 .then((data) => {
 
-                    // Create a new object with all avaiable user input data
                     const manager = new Manager(name, id, email, data.officeNumber);
                     teamMembers.push(manager);
 
-                    // Reads and places HTML from manager.html in teamMemever Variable
                     teamMember = fs.readFileSync("templates/manager.html");
 
-                    // Uses eval() to pass template literals from html files.
-                    // Adds the string to the team HTML.
-                    // teamHTML = teamHTML + "\n" + eval('`'+ teamMember +'`');
                 });
                 break;
 
-            //Steps Similar to Manager but for intern
+      
             case "Intern":
                 await inquirer.prompt([
                     {
@@ -145,5 +140,4 @@ async function TeamBuilder(){
 
 TeamBuilder();
 
-  
   
